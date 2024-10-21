@@ -21,3 +21,18 @@ INSERT INTO books (title, author_name) VALUES ('The Man Who Was Thursday', 'GK C
 INSERT INTO books (title, author_name) VALUES ('Bluets', 'Maggie Nelson');
 INSERT INTO books (title, author_name) VALUES ('No Place on Earth', 'Christa Wolf');
 INSERT INTO books (title, author_name) VALUES ('Nevada', 'Imogen Binnie');
+
+DROP TABLE IF EXISTS albums;
+
+CREATE TABLE albums (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    release_year int,
+    artist_id int
+);
+
+INSERT INTO albums (title, release_year, artist_id) VALUES ('Vulgar display of power', 1992, 1);
+INSERT INTO albums (title, release_year, artist_id) VALUES ('Cowboys from hell', 1990, 1);
+INSERT INTO albums (title, release_year, artist_id) VALUES ('Follow the leader', 1998, 2);
+INSERT INTO albums (title, release_year, artist_id) VALUES ('Untouchables', 2002, 2);
+INSERT INTO albums (title, release_year, artist_id) VALUES ('Bloody kisses', 1993, 3);

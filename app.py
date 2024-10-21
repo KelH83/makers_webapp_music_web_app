@@ -1,5 +1,8 @@
 import os
 from flask import Flask, request
+from lib.album_repository import AlbumRepository
+from lib.album import Album
+from lib.database_connection import get_flask_database_connection
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -16,12 +19,18 @@ app = Flask(__name__)
 def get_emoji():
     return ":)"
 
-# This imports some more example routes for you to see how they work
-# You can delete these lines if you don't need them.
-from example_routes import apply_example_routes
-apply_example_routes(app)
+@app.route('/albums', methods=['POST'])
+def post_album():
+    connection = get_flask_database_connection(app) 
+    title = request.form['title']
+    release_year = request.form['release_year']
+    artist = request.form['artist_id']
+    repository = AlbumRepository(connection)
 
-# == End Example Code ==
+    repository.create(Album(artist, title, release_year))
+
+    return 'Created'
+
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
